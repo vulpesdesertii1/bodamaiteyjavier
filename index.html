@@ -330,50 +330,69 @@
     </section>
 
     <section id="pago" class="text-center my-20 px-4 fade-in-up">
-      <h2 class="section-title">Contribución a la Boda</h2>
-      <p class="text-lg sm:text-xl leading-relaxed mb-6 max-w-2xl mx-auto">
-        Si deseas hacernos un regalo, puedes realizar una transferencia bancaria 💌<br>
-        ¡Gracias por formar parte de este momento tan especial!
-      </p>
+  <h2 class="section-title">Contribución a la Boda</h2>
+  <p class="text-lg sm:text-xl leading-relaxed mb-6 max-w-2xl mx-auto">
+    Si deseas hacernos un regalo, puedes realizar una transferencia bancaria 💌<br>
+    ¡Gracias por formar parte de este momento tan especial!
+  </p>
 
-      <div class="card max-w-2xl mx-auto p-6 sm:p-8 text-left">
-        <p class="text-lg mb-4"><strong>💳 IBAN:</strong>
-          <span id="iban" data-iban="ES0400495177652016335582">
-            ES04 0049 5177 6520 1633 5582
-          </span>
-        </p>
-        <p class="text-lg mb-4"><strong>👤 Titular:</strong> Javier & Maite</p>
-        <p class="text-lg mb-6"><strong>📝 Concepto:</strong> Tu nombre completo</p>
-    
-        <button onclick="copyIBAN()" class="button-primary mt-2">Copiar IBAN</button>
+  <div class="card max-w-2xl mx-auto p-6 sm:p-8 text-left">
+    <p class="text-lg mb-4"><strong>💳 IBAN:</strong>
+      <span id="iban" data-iban="ES0400495177652016335582">
+        ES04 0049 5177 6520 1633 5582
+      </span>
+    </p>
+    <p class="text-lg mb-4"><strong>👤 Titular:</strong> Javier & Maite</p>
+    <p class="text-lg mb-6"><strong>📝 Concepto:</strong> Tu nombre completo</p>
 
-        <p class="text-md text-gray-600 mt-6">
-          *Por favor, incluye tu nombre completo como concepto para poder agradecerte correctamente.*
-        </p>
+    <!-- Botón visualmente atractivo -->
+    <button onclick="copyIBAN(event)" id="copy-button" class="mt-4 inline-flex items-center gap-2 px-6 py-3 text-white bg-amber-600 hover:bg-amber-700 focus:ring-4 focus:ring-amber-300 font-semibold rounded-full shadow-lg transition-all duration-300">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+           viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 16h.01M12 16h.01M16 16h.01M9 20h6a2 2 0 002-2V8a2 2 0 00-2-2H9a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+      Copiar IBAN
+    </button>
 
-        <div class="section-image-container mt-6">
-          <img src="img/regalo.jpg" alt="Imagen decorativa sobre regalo" class="section-image">
-        </div>
-      </div>
-    </section>
+    <p class="text-md text-gray-600 mt-6">
+      *Por favor, incluye tu nombre completo como concepto para poder agradecerte correctamente.*
+    </p>
 
-    <script>
-  function copyIBAN() {
+    <div class="section-image-container mt-6">
+      <img src="img/regalo.jpg" alt="Imagen decorativa sobre regalo" class="section-image">
+    </div>
+  </div>
+</section>
+
+<!-- Script para copiar IBAN con feedback -->
+<script>
+  function copyIBAN(event) {
     const ibanSpan = document.getElementById("iban");
     const ibanClean = ibanSpan.getAttribute("data-iban");
+    const button = event.target.closest("button");
 
     navigator.clipboard.writeText(ibanClean)
       .then(() => {
+        // Mostrar mensaje (si tienes message-box)
         const msgBox = document.getElementById('message-box');
         if (msgBox) {
           msgBox.textContent = "IBAN copiado correctamente ✅";
           msgBox.style.display = 'block';
-          setTimeout(() => {
-            msgBox.style.display = 'none';
-          }, 2500);
-        } else {
-          alert("IBAN copiado correctamente");
+          setTimeout(() => { msgBox.style.display = 'none'; }, 2500);
         }
+
+        // Cambiar texto del botón temporalmente
+        const original = button.innerHTML;
+        button.innerHTML = '✅ Copiado';
+        button.classList.remove('bg-amber-600');
+        button.classList.add('bg-green-600');
+
+        setTimeout(() => {
+          button.innerHTML = original;
+          button.classList.remove('bg-green-600');
+          button.classList.add('bg-amber-600');
+        }, 2000);
       })
       .catch(() => {
         alert("No se pudo copiar el IBAN automáticamente");
