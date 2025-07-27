@@ -3,424 +3,304 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuestra Boda - Javier Espinosa Mejías & Maite Prieto Vellisco</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Nuestra Boda – Javier &amp; Maite</title>
+    <!-- Tailwind CSS CDN for layout utilities -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* Define a soft, romantic colour palette using CSS variables */
+        :root {
+            --color-bg:      #fff8f3; /* fondo marfil cálido */
+            --color-accent: #f4d4d4; /* rosa empolvado para acentos */
+            --color-secondary: #b5836f; /* tono terracota suave para botones */
+            --color-text:   #4e3d31; /* marrón grisáceo para texto */
+            --color-heading: #7c5943; /* marrón profundo para titulares */
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #F5EFE6; /* Crema claro de la paleta */
-            color: #5C4033; /* Marrón oscuro para el texto principal */
+            font-family: 'Inter', sans‑serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            margin: 0;
             line-height: 1.6;
         }
+
         h1, h2, h3 {
-            font-family: 'Playfair Display', serif; /* Fuente más elegante para títulos */
-            color: #A07C5B; /* Marrón cálido para los títulos */
+            font-family: 'Playfair Display', serif;
+            color: var(--color-heading);
+            margin: 0;
         }
-        .header-bg {
-            background-image: url('uploaded:image_3c7860.jpg-9e710085-2154-4b15-bfeb-4481692d0691'); /* Imagen de la boda proporcionada por el usuario */
+
+        /* Hero section */
+        .hero {
+            position: relative;
+            background-image: url('img/hero.jpg');
             background-size: cover;
             background-position: center;
-            position: relative;
-            min-height: 80vh; /* Altura mínima para la cabecera */
+            height: 90vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: white;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
-        .header-overlay {
-            background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 100%);
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            gap: 1rem;
-            }
-        .text-shadow-lg {
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para el texto del header */
-        }
-        .section-title {
-            font-weight: 700;
-            margin-bottom: 2.5rem;
-            font-size: 2.8rem; /* Tamaño de fuente más grande para títulos de sección */
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-        .section-title::after {
+
+        .hero::before {
             content: '';
             position: absolute;
-            left: 50%;
-            bottom: 0;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: #A07C5B; /* Línea decorativa del color de título */
-            border-radius: 5px;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
         }
-        .button-primary {
-            background-color: #A07C5B; /* Marrón cálido de la paleta */
-            color: white;
-            padding: 0.9rem 2.2rem;
-            border-radius: 9999px; /* Botones redondeados */
-            transition: all 0.3s ease;
-            font-weight: 600;
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: #fff;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
             letter-spacing: 0.05em;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-        .button-primary:hover {
-            background-color: #8B6244; /* Tono más oscuro del marrón para hover */
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+
+        .hero p {
+            font-size: 1.3rem;
         }
-        .card {
-            background-color: white; /* Fondo blanco para las tarjetas */
-            border-radius: 1.5rem; /* Más redondeado */
-            padding: 2rem;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
-            transition: transform 0.3s ease;
-            border: 1px solid #E0D9CC; /* Borde sutil en tono beige claro */
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.75rem 2rem;
+            background-color: var(--color-secondary);
+            color: #fff;
+            border-radius: 9999px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
         }
-        .card:hover {
-            transform: translateY(-5px);
+
+        .cta-button:hover {
+            background-color: #9c6955;
         }
-        .message-box {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #333;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 8px;
-            z-index: 1000;
-            display: none; /* Hidden by default */
-            font-size: 1.1rem;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
+        /* Countdown section */
+        .countdown-section {
+            background-color: var(--color-accent);
+            padding: 4rem 1rem;
             text-align: center;
         }
+
+        .countdown-items {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
         .countdown-item {
-            display: inline-block;
-            margin: 0 1rem;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: white; /* Color blanco para los números de la cuenta atrás */
-        }
-        .countdown-item span {
-            display: block;
-            font-size: 0.9rem;
-            font-weight: 400;
-            color: white; /* Color blanco para las etiquetas de la cuenta atrás */
-            margin-top: 0.2rem;
-        }
-        .google-form-iframe {
-            width: 100%;
-            height: 600px; /* Ajusta la altura según sea necesario */
-            border: none;
+            background: #fff;
             border-radius: 0.75rem;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 1rem 1.5rem;
+            min-width: 80px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        .section-image-container {
-            width: 100%;
-            height: 280px; /* Altura fija para el contenedor de la imagen */
-            overflow: hidden;
-            border-radius: 1rem;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-            margin-bottom: 1.5rem; /* Espacio debajo de la imagen */
+
+        .countdown-item span:first-child {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-heading);
         }
-        .section-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
-            transition: transform 0.3s ease-in-out;
+
+        .countdown-item span:last-child {
+            font-size: 0.9rem;
+            color: var(--color-secondary);
         }
-        .section-image-container:hover .section-image {
-            transform: scale(1.05); /* Ligeramente más grande en hover */
+
+        /* Details section */
+        .details-section {
+            padding: 4rem 1rem;
         }
-        .image-grid-story {
+
+        .details-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsivo para 1 o 2 columnas */
-            gap: 1.5rem; /* Espacio entre las imágenes */
-            margin-bottom: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
-        .section-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(20%);
-    transition: transform 0.3s ease, filter 0.3s ease;
-}
-.section-image-container:hover .section-image {
-    transform: scale(1.05);
-    filter: grayscale(0%);
-}
-
-        @media (max-width: 640px) {
-            .section-title {
-                font-size: 2.2rem;
-            }
-            .countdown-item {
-                font-size: 1.8rem;
-                margin: 0 0.5rem;
-            }
-            .countdown-item span {
-                font-size: 0.7rem;
-            }
-            .header-overlay {
-                gap: 0.5rem; /* Menos espacio en móviles */
-            }
-            .header-overlay h1 {
-                font-size: 3.5rem; /* Ajuste para móviles */
-            }
-            .header-overlay p {
-                font-size: 1.5rem; /* Ajuste para móviles */
-            }
-            .image-grid-story {
-                grid-template-columns: 1fr; /* Una columna en móviles */
-            }
+        .detail-card {
+            background: #fff;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            border: 1px solid var(--color-accent);
         }
-        @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-.fade-in-up {
-    animation: fadeInUp 1s ease forwards;
-}
 
+        .detail-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .map-link {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--color-secondary);
+            color: #fff;
+            border-radius: 9999px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .map-link:hover {
+            background-color: #9c6955;
+        }
+
+        /* Gallery section */
+        .gallery-section {
+            background-color: var(--color-accent);
+            padding: 4rem 1rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-grid img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-secondary);
+            color: var(--color-bg);
+            text-align: center;
+            padding: 2rem 1rem;
+        }
     </style>
 </head>
 <body>
-
-    <!-- Sección de Cabecera -->
-    <header class="header-bg">
-        <div class="header-overlay">
-            <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold text-shadow-lg">
-                Javier & Maite
-            </h1>
-            <p class="text-2xl sm:text-3xl md:text-4xl font-light text-shadow-lg">
-                ¡Nos casamos!
-            </p>
-            <p class="text-xl sm:text-2xl md:text-3xl font-semibold text-shadow-lg">
-                7 de noviembre de 2025
-            </p>
-            <div id="countdown" class="mt-8 flex justify-center mb-10">
-                <div class="countdown-item">
-                    <span id="days" class="text-shadow-lg">00</span>
-                    <span>Días</span>
-                </div>
-                <div class="countdown-item">
-                    <span id="hours" class="text-shadow-lg">00</span>
-                    <span>Horas</span>
-                </div>
-                <div class="countdown-item">
-                    <span id="minutes" class="text-shadow-lg">00</span>
-                    <span>Minutos</span>
-                </div>
-                <div class="countdown-item">
-                    <span id="seconds" class="text-shadow-lg">00</span>
-                    <span>Segundos</span>
-                </div>
-            </div>
+    <!-- Hero / Header -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Javier &amp; Maite</h1>
+            <p class="mt-2 text-xl">¡Nos casamos!</p>
+            <p class="mt-1 text-lg">7 de noviembre de 2025</p>
+            <a href="#detalles" class="cta-button">Ver detalles</a>
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-12 sm:py-16 max-w-screen-lg">
-
-        <!-- Sección de Nuestra Historia -->
-        <section id="nuestra-historia" class="fade-in-up">
-            <h2 class="section-title text-center">Nuestra Historia</h2>
-            <div class="card max-w-3xl mx-auto p-6 sm:p-8">
-                <p class="text-lg sm:text-xl leading-relaxed mb-6">
-                    Nuestra historia comenzó en [Año o Lugar], con un encuentro que cambiaría nuestras vidas para siempre. Desde ese día, cada momento ha sido una aventura, llena de risas, apoyo mutuo y un amor que crece día a día.
-                </p>
-                <div class="image-grid-story">
-                    <div class="section-image-container">
-                        <img src="3a4675a4-7aed-457f-b42b-13c2cd49407d.jpeg" class="section-image">
-                    </div>
-                    <div class="section-image-container">
-                        <img src="994c6f6b-154b-4191-b03b-28f48fb14521.jpeg" class="section-image">
-                    </div>
-                </div>
-                <p class="text-lg sm:text-xl leading-relaxed">
-                    Hemos compartido [menciona un par de hitos, ej: viajes inolvidables, desafíos superados, sueños compartidos] y estamos emocionados de comenzar este nuevo capítulo como marido y mujer. ¡Gracias por ser parte de nuestro viaje!
-                </p>
+    <!-- Countdown section -->
+    <section class="countdown-section">
+        <h2 class="text-3xl font-bold">Cuenta atrás</h2>
+        <div class="countdown-items">
+            <div class="countdown-item">
+                <span id="days">0</span>
+                <span>Días</span>
             </div>
-        </section>
-
-        <!-- Sección de Detalles del Evento con fondo de imagen -->
-        <section id="detalles" class="details-bg mb-16 sm:mb-20 text-center">
-            <div class="details-overlay"></div>
-            <div class="details-content">
-                <h2 class="section-title text-center text-gray-800">Detalles del Evento</h2>
-                <div class="card max-w-xl mx-auto p-6 sm:p-8">
-                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">Ceremonia y Recepción</h3>
-                    <p class="text-lg mb-2"><strong>Fecha:</strong> 07-11-2025 </p>
-                    <p class="text-lg mb-2"><strong>Hora:</strong> 19:00h </p>
-                    <p class="text-lg mb-4"><strong>Lugar:</strong> Finca la Ribera </p>
-                    <p class="text-md text-gray-600 mb-4">Finca La Ribera 2, Aranjuez, Madrid</p>
-                    <a href="https://maps.google.com/?q=Finca%20La%20Ribera%202,%20Aranjuez,%20Madrid" target="_blank" class="text-blue-600 hover:underline inline-block mt-2">Ver en el mapa</a>
-                    <div class="section-image-container mt-6">
-                        <img src="patio.jpg">
-                    </div>
-                </div>
+            <div class="countdown-item">
+                <span id="hours">0</span>
+                <span>Horas</span>
             </div>
-        </section>
-
-        <!-- Sección de Contribución de Luna de Miel con Google Forms -->
-        <section id="honeymoon-contribution-section" class="text-center mb-16 sm:mb-20">
-            <h2 class="section-title text-center">Javier y Maite</h2>
-            <div class="card max-w-3xl mx-auto p-6 sm:p-8 text-left">
-                <p class="text-lg sm:text-xl leading-relaxed mb-4">
-                    Si deseas contribuir a nuestra luna de miel, por favor, rellena el siguiente formulario para informarnos de tu contribución y déjanos un mensaje.
-                </p>
-                <!-- Google Forms Embed -->
-                <iframe class="google-form-iframe" src="https://forms.gle/Pu4VyqhL1un6hbfF8" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
-                <p class="text-md text-gray-600 mt-4">
-                    *(Este formulario solo recopila información, no procesa pagos.)*
-                </p>
-
-                <div class="mt-8 pt-4 border-t border-gray-200">
-                    <p class="text-lg sm:text-xl leading-relaxed mb-4">
-                        <strong>Después de rellenar el formulario, por favor, realiza la transferencia bancaria a:</strong>
-                    </p>
-                    <p class="text-lg mb-2"><strong>IBAN:</strong> ES0400495177652016335582</p>
-                    <p class="text-lg mb-2"><strong>Titular:</strong> Javier & Maite</p>
-                    <p class="text-lg mb-4"><strong>Concepto:</strong> Tu nombre completo</p>
-                    <div class="section-image-container mt-6">
-                        <img src="uploaded:c0f41242-610a-403a-8ae6-c7584b6df232.jpg-487aa524-5b58-4c27-94e4-0d7d02d1f311" alt="Javier y Maite abrazados de noche" class="section-image">
-                    </div>
-                </div>
-                <p id="user-id-display" class="text-sm text-gray-500 mt-10">Tu ID de usuario: Cargando...</p>
+            <div class="countdown-item">
+                <span id="minutes">0</span>
+                <span>Minutos</span>
             </div>
-        </section>
+            <div class="countdown-item">
+                <span id="seconds">0</span>
+                <span>Segundos</span>
+            </div>
+        </div>
+    </section>
 
-    </main>
+    <!-- Details section -->
+    <section id="detalles" class="details-section">
+        <h2 class="text-3xl font-bold text-center">Detalles de nuestra boda</h2>
+        <div class="details-grid mt-8">
+            <div class="detail-card">
+                <h3 class="font-semibold">Ceremonia</h3>
+                <p>Lugar: Iglesia de San Antonio, Aranjuez</p>
+                <p>Hora: 17:00</p>
+            </div>
+            <div class="detail-card">
+                <h3 class="font-semibold">Banquete</h3>
+                <p>Lugar: Finca de Villalba</p>
+                <p>Hora: 19:30</p>
+            </div>
+            <div class="detail-card">
+                <h3 class="font-semibold">Código de vestimenta</h3>
+                <p>Elegante y cómodo, colores neutros o pastel.</p>
+            </div>
+            <div class="detail-card">
+                <h3 class="font-semibold">Información adicional</h3>
+                <p>Habrá servicio de autobuses al finalizar la fiesta.</p>
+            </div>
+        </div>
+        <div class="text-center">
+            <a class="map-link" href="https://maps.google.com">Abrir en Google Maps</a>
+        </div>
+    </section>
 
-    <!-- Caja de Mensajes Personalizada -->
-    <div id="message-box" class="message-box"></div>
+    <!-- Gallery section -->
+    <section class="gallery-section">
+        <h2 class="text-3xl font-bold text-center mb-8">Nuestra historia</h2>
+        <div class="gallery-grid">
+            <img src="img/story1.jpg" alt="Historia 1">
+            <img src="img/story2.jpg" alt="Historia 2">
+            <img src="img/story3.jpg" alt="Historia 3">
+            <img src="img/story4.jpg" alt="Historia 4">
+            <img src="img/story5.jpg" alt="Historia 5">
+            <img src="img/story6.jpg" alt="Historia 6">
+        </div>
+    </section>
 
-    <!-- Pie de Página -->
-    <footer class="bg-gray-800 text-white text-center py-8 rounded-t-lg">
-        <p class="text-sm sm:text-base">&copy; 2025 Javier Espinosa Mejías & Maite Prieto Vellisco. Todos los derechos reservados.</p>
-        <p class="text-sm sm:text-base mt-2">¡Gracias por ser parte de nuestra historia!</p>
-        <p class="text-xs mt-4">Diseñado con amor para Javier y Maite.</p>
+    <!-- Footer -->
+    <footer>
+        Gracias por acompañarnos en este día tan especial.
     </footer>
 
-    <!-- Firebase SDKs -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    <!-- Countdown script -->
+    <script>
+    // Countdown timer to wedding date (7 de noviembre de 2025, 19:00)
+    function updateCountdown() {
+        const weddingDate = new Date('2025-11-07T19:00:00').getTime();
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
 
-        // Global variables for Firebase config and app ID
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
-        
-        let initialAuthToken = null;
-        if (typeof __initial_auth_token !== 'undefined') {
-            initialAuthToken = __initial_auth_token;
+        if (distance < 0) {
+            document.getElementById('days').textContent = '0';
+            document.getElementById('hours').textContent = '0';
+            document.getElementById('minutes').textContent = '0';
+            document.getElementById('seconds').textContent = '0';
+            return;
         }
+        const days    = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours   = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        let app;
-        let db;
-        let auth;
-        let userId = null;
+        document.getElementById('days').textContent    = days;
+        document.getElementById('hours').textContent   = hours < 10 ? '0' + hours : hours;
+        document.getElementById('minutes').textContent = minutes < 10 ? '0' + minutes : minutes;
+        document.getElementById('seconds').textContent = seconds < 10 ? '0' + seconds : seconds;
+    }
 
-        // Function to show a custom message box
-        function showMessageBox(message) {
-            const msgBox = document.getElementById('message-box');
-            msgBox.textContent = message;
-            msgBox.style.display = 'block';
-            setTimeout(() => {
-                msgBox.style.display = 'none';
-            }, 3000); // Hide after 3 seconds
-        }
-
-        window.onload = async function() {
-            try {
-                // Initialize Firebase
-                app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                auth = getAuth(app);
-
-                // Authenticate user
-                if (initialAuthToken) {
-                    await signInWithCustomToken(auth, initialAuthToken);
-                } else {
-                    await signInAnonymously(auth);
-                }
-
-                // Listen for auth state changes to get user ID
-                onAuthStateChanged(auth, (user) => {
-                    if (user) {
-                        userId = user.uid;
-                        // Ensure the element exists before trying to set textContent
-                        const userIdDisplay = document.getElementById('user-id-display');
-                        if (userIdDisplay) {
-                            userIdDisplay.textContent = `Tu ID de usuario: ${userId}`;
-                        }
-                    } else {
-                        // If for some reason auth fails, generate a random ID
-                        userId = crypto.randomUUID();
-                        const userIdDisplay = document.getElementById('user-id-display');
-                        if (userIdDisplay) {
-                            userIdDisplay.textContent = `Tu ID de usuario: ${userId} (Anónimo)`;
-                        }
-                    }
-                });
-
-            } catch (error) {
-                console.error("Error initializing Firebase or authenticating:", error);
-                const userIdDisplay = document.getElementById('user-id-display');
-                if (userIdDisplay) {
-                    userIdDisplay.textContent = `Error al cargar ID de usuario.`;
-                }
-                showMessageBox("Error al cargar la aplicación. Por favor, inténtalo de nuevo.");
-            }
-
-            // Initialize and start countdown
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
-        };
-
-        // Countdown Timer Functionality
-        function updateCountdown() {
-            // Set your wedding date here (Year, Month (0-11), Day, Hour, Minute, Second)
-            const weddingDate = new Date("2025-11-07T19:00:00").getTime(); // 7 de noviembre de 2025 a las 19:00h
-
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("days").textContent = days < 10 ? '0' + days : days;
-            document.getElementById("hours").textContent = hours < 10 ? '0' + hours : hours;
-            document.getElementById("minutes").textContent = minutes < 10 ? '0' + minutes : minutes;
-            document.getElementById("seconds").textContent = seconds < 10 ? '0' + seconds : seconds;
-
-            if (distance < 0) {
-                clearInterval(this); // Stop the countdown
-                document.getElementById("countdown").innerHTML = "<p class='text-2xl font-bold text-white'>¡Ya nos hemos casado!</p>";
-            }
-        }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
     </script>
 </body>
 </html>
