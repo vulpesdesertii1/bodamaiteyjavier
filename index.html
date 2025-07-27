@@ -346,14 +346,18 @@
     <p class="text-lg mb-6"><strong>📝 Concepto:</strong> Tu nombre completo</p>
 
     <!-- Botón visualmente atractivo -->
-    <button onclick="copyIBAN(event)" id="copy-button" class="mt-4 inline-flex items-center gap-2 px-6 py-3 text-white bg-amber-600 hover:bg-amber-700 focus:ring-4 focus:ring-amber-300 font-semibold rounded-full shadow-lg transition-all duration-300">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-           viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M8 16h.01M12 16h.01M16 16h.01M9 20h6a2 2 0 002-2V8a2 2 0 00-2-2H9a2 2 0 00-2 2v10a2 2 0 002 2z" />
-      </svg>
-      Copiar IBAN
-    </button>
+    <div class="text-center">
+  <button onclick="copyIBAN(event)" id="copy-button"
+    class="mt-4 mx-auto inline-flex items-center gap-2 px-6 py-3 text-white bg-amber-600 hover:bg-amber-700 focus:ring-4 focus:ring-amber-300 font-semibold rounded-full shadow-lg transition-all duration-300">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+         viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M8 16h.01M12 16h.01M16 16h.01M9 20h6a2 2 0 002-2V8a2 2 0 00-2-2H9a2 2 0 00-2 2v10a2 2 0 002 2z" />
+    </svg>
+    Copiar IBAN
+  </button>
+</div>
+
 
     <p class="text-md text-gray-600 mt-6">
       *Por favor, incluye tu nombre completo como concepto para poder agradecerte correctamente.*
