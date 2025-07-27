@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Boda - Javier Espinosa Mejías & Maite Prieto Vellisco</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5EFE6; /* Crema claro de la paleta */
+            color: #5C4033; /* Marrón oscuro para el texto principal */
+            line-height: 1.6;
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif; /* Fuente más elegante para títulos */
+            color: #A07C5B; /* Marrón cálido para los títulos */
+        }
+        .header-bg {
+            background-image: url('uploaded:image_3c7860.jpg-9e710085-2154-4b15-bfeb-4481692d0691'); /* Imagen de la boda proporcionada por el usuario */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            min-height: 80vh; /* Altura mínima para la cabecera */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .header-overlay {
+            background-color: rgba(0, 0, 0, 0.4); /* Superposición oscura para mejor contraste */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            gap: 1rem; /* Espacio entre los elementos del header */
+        }
+        .text-shadow-lg {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para el texto del header */
+        }
+        .section-title {
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            font-size: 2.8rem; /* Tamaño de fuente más grande para títulos de sección */
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #A07C5B; /* Línea decorativa del color de título */
+            border-radius: 5px;
+        }
+        .button-primary {
+            background-color: #A07C5B; /* Marrón cálido de la paleta */
+            color: white;
+            padding: 0.9rem 2.2rem;
+            border-radius: 9999px; /* Botones redondeados */
+            transition: all 0.3s ease;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .button-primary:hover {
+            background-color: #8B6244; /* Tono más oscuro del marrón para hover */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .card {
+            background-color: white; /* Fondo blanco para las tarjetas */
+            border-radius: 1.5rem; /* Más redondeado */
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
+            transition: transform 0.3s ease;
+            border: 1px solid #E0D9CC; /* Borde sutil en tono beige claro */
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .vote-button {
+            background-color: #8CA982; /* Verde claro de la paleta */
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 0.75rem; /* Más redondeado */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .vote-button:hover {
+            background-color: #6D8B61; /* Verde oscuro de la paleta para hover */
+            transform: translateY(-1px);
+        }
+        .vote-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+        .message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #333;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            z-index: 1000;
+            display: none; /* Hidden by default */
+            font-size: 1.1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        .countdown-item {
+            display: inline-block;
+            margin: 0 1rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white; /* Color blanco para los números de la cuenta atrás */
+        }
+        .countdown-item span {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: white; /* Color blanco para las etiquetas de la cuenta atrás */
+            margin-top: 0.2rem;
+        }
+        .textarea-custom, .input-custom {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border: 1px solid #E0D9CC;
+            background-color: #FBF8F4;
+            color: #5C4033;
+            font-size: 1rem;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+            transition: border-color 0.3s ease;
+        }
+        .textarea-custom {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .textarea-custom:focus, .input-custom:focus {
+            outline: none;
+            border-color: #A07C5B;
+            box-shadow: 0 0 0 3px rgba(160, 124, 91, 0.2);
+        }
+        .loading-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #A07C5B;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .details-bg {
+            background-image: url('uploaded:image_3cd927.jpg-41548104-2066-4805-8480-0158bdaf6ffd'); /* Nueva imagen como fondo */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            padding: 4rem 0; /* Espaciado interno para la sección */
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.3); /* Sombra interna sutil */
+        }
+        .details-overlay {
+            background-color: rgba(255, 255, 255, 0.7); /* Superposición blanca semi-transparente */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1; /* Asegura que el overlay esté detrás del contenido */
+        }
+        .details-content {
+            position: relative;
+            z-index: 2; /* Asegura que el contenido esté por encima del overlay */
+            color: #5C4033; /* Color de texto para el contenido de la sección */
+        }
+        .details-content .card {
+            background-color: rgba(255, 255, 255, 0.9); /* Fondo de tarjeta ligeramente transparente */
+        }
+        @media (max-width: 640px) {
+            .section-title {
+                font-size: 2.2rem;
+            }
+            .countdown-item {
+                font-size: 1.8rem;
+                margin: 0 0.5rem;
+            }
+            .countdown-item span {
+                font-size: 0.7rem;
+            }
+            .header-overlay {
+                gap: 0.5rem; /* Menos espacio en móviles */
+            }
+            .header-overlay h1 {
+                font-size: 3.5rem; /* Ajuste para móviles */
+            }
+            .header-overlay p {
+                font-size: 1.5rem; /* Ajuste para móviles */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sección de Cabecera -->
+    <header class="header-bg">
+        <div class="header-overlay">
+            <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold text-shadow-lg">
+                Javier & Maite
+            </h1>
+            <p class="text-2xl sm:text-3xl md:text-4xl font-light text-shadow-lg">
+                ¡Nos casamos!
+            </p>
+            <p class="text-xl sm:text-2xl md:text-3xl font-semibold text-shadow-lg">
+                7 de noviembre de 2025
+            </p>
+            <div id="countdown" class="mt-8 flex justify-center mb-10">
+                <div class="countdown-item">
+                    <span id="days" class="text-shadow-lg">00</span>
+                    <span>Días</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="hours" class="text-shadow-lg">00</span>
+                    <span>Horas</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="minutes" class="text-shadow-lg">00</span>
+                    <span>Minutos</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="seconds" class="text-shadow-lg">00</span>
+                    <span>Segundos</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12 sm:py-16 max-w-screen-lg">
+
+        <!-- Sección de Nuestra Historia -->
+        <section id="nuestra-historia" class="text-center mb-16 sm:mb-20">
+            <h2 class="section-title text-center">Nuestra Historia</h2>
+            <div class="card max-w-3xl mx-auto p-6 sm:p-8">
+                <p class="text-lg sm:text-xl leading-relaxed mb-4">
+                    Nuestra historia comenzó en [Año o Lugar], con un encuentro que cambiaría nuestras vidas para siempre. Desde ese día, cada momento ha sido una aventura, llena de risas, apoyo mutuo y un amor que crece día a día.
+                </p>
+                <p class="text-lg sm:text-xl leading-relaxed">
+                    Hemos compartido [menciona un par de hitos, ej: viajes inolvidables, desafíos superados, sueños compartidos] y estamos emocionados de comenzar este nuevo capítulo como marido y mujer. ¡Gracias por ser parte de nuestro viaje!
+                </p>
+            </div>
+        </section>
+
+        <!-- Sección de Detalles del Evento con fondo de imagen -->
+        <section id="detalles" class="details-bg mb-16 sm:mb-20 text-center">
+            <div class="details-overlay"></div>
+            <div class="details-content">
+                <h2 class="section-title text-center text-gray-800">Detalles del Evento</h2>
+                <div class="card max-w-xl mx-auto p-6 sm:p-8">
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">Ceremonia y Recepción</h3>
+                    <p class="text-lg mb-2"><strong>Fecha:</strong> [Fecha de la Boda]</p>
+                    <p class="text-lg mb-2"><strong>Hora:</strong> [Hora de la Ceremonia]</p>
+                    <p class="text-lg mb-4"><strong>Lugar:</strong> [Nombre del Lugar]</p>
+                    <p class="text-md text-gray-600 mb-4">Finca La Ribera 2, Aranjuez, Madrid</p>
+                    <a href="https://maps.google.com/?q=Finca%20La%20Ribera%202,%20Aranjuez,%20Madrid" target="_blank" class="text-blue-600 hover:underline inline-block mt-2">Ver en el mapa</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Votación de Luna de Miel -->
+        <section id="votacion-luna-miel" class="text-center mb-16 sm:mb-20">
+            <h2 class="section-title text-center">¿Dónde será nuestra Luna de Miel?</h2>
+            <p class="text-lg sm:text-xl leading-relaxed max-w-3xl mx-auto mb-10">
+                ¡Ayúdanos a decidir nuestro destino de luna de miel! Vota por tu opción favorita.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <!-- Opción 1 -->
+                <div class="card flex flex-col items-center p-6">
+                    <img src="https://placehold.co/400x250/A2D2FF/000000?text=Playa+Tropical" alt="Playa Tropical" class="w-full h-48 object-cover rounded-lg mb-4 shadow-md">
+                    <h3 class="text-2xl font-semibold mb-2 text-gray-800">Playa Tropical</h3>
+                    <p class="text-md text-gray-600 mb-6">Sol, arena y mar en un paraíso exótico. Relájate y disfruta del paraíso.</p>
+                    <button class="vote-button" data-option="playa">Votar (<span id="votes-playa">0</span>)</button>
+                </div>
+
+                <!-- Opción 2 -->
+                <div class="card flex flex-col items-center p-6">
+                    <img src="https://placehold.co/400x250/B2EBF2/000000?text=Aventura+en+Montaña" alt="Aventura en Montaña" class="w-full h-48 object-cover rounded-lg mb-4 shadow-md">
+                    <h3 class="text-2xl font-semibold mb-2 text-gray-800">Aventura en Montaña</h3>
+                    <p class="text-md text-gray-600 mb-6">Senderismo, paisajes impresionantes y aire puro de la naturaleza. ¡Explora!</p>
+                    <button class="vote-button" data-option="montana">Votar (<span id="votes-montana">0</span>)</button>
+                </div>
+
+                <!-- Opción 3 -->
+                <div class="card flex flex-col items-center p-6">
+                    <img src="https://placehold.co/400x250/FFD8B2/000000?text=Ciudad+Histórica" alt="Ciudad Histórica" class="w-full h-48 object-cover rounded-lg mb-4 shadow-md">
+                    <h3 class="text-2xl font-semibold mb-2 text-gray-800">Ciudad Histórica</h3>
+                    <p class="text-md text-gray-600 mb-6">Cultura, gastronomía y paseos por calles antiguas. Sumérgete en la historia.</p>
+                    <button class="vote-button" data-option="ciudad">Votar (<span id="votes-ciudad">0</span>)</button>
+                </div>
+            </div>
+            <p id="user-id-display" class="text-sm text-gray-500 mt-10">Tu ID de usuario: Cargando...</p>
+        </section>
+
+        <!-- Sección de Contribución de Luna de Miel (Simulada) -->
+        <section id="honeymoon-contribution-section" class="text-center mb-16 sm:mb-20 hidden">
+            <h2 class="section-title text-center">Javier y Maite</h2>
+            <div class="card max-w-3xl mx-auto p-6 sm:p-8 text-left">
+                <p class="text-lg sm:text-xl leading-relaxed mb-6">
+                    ¡Gracias por tu voto! Has elegido **<span id="chosen-honeymoon-option" class="font-semibold text-A07C5B"></span>** como destino de luna de miel.
+                </p>
+
+                <form id="contribution-form" action="gracias.html" method="POST" class="space-y-4">
+                    <div>
+                        <label for="nombre" class="block text-lg font-medium text-gray-700 mb-1">Tu nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required class="input-custom">
+                    </div>
+                    <div>
+                        <label for="cantidad" class="block text-lg font-medium text-gray-700 mb-1">Cantidad que vas a transferir (€):</label>
+                        <input type="number" id="cantidad" name="cantidad" required class="input-custom">
+                    </div>
+                    <div>
+                        <label for="mensaje" class="block text-lg font-medium text-gray-700 mb-1">Mensaje para los novios (opcional):</label>
+                        <textarea id="mensaje" name="mensaje" class="textarea-custom"></textarea>
+                    </div>
+                    <button type="submit" class="button-primary w-full flex items-center justify-center">
+                        Enviar y realizar transferencia
+                    </button>
+                </form>
+
+                <div class="mt-8 pt-4 border-t border-gray-200">
+                    <p class="text-lg sm:text-xl leading-relaxed mb-4">
+                        <strong>Después de enviar el formulario, por favor, realiza la transferencia a:</strong>
+                    </p>
+                    <p class="text-lg mb-2"><strong>IBAN:</strong> ES0400495177652016335582</p>
+                    <p class="text-lg mb-2"><strong>Titular:</strong> Javier & Maite</p>
+                    <p class="text-lg mb-4"><strong>Concepto:</strong> Tu nombre completo</p>
+                    <p class="text-md text-gray-600">
+                        *(Esta es una simulación de la pasarela de pago. Para que la contribución sea efectiva, es necesario realizar la transferencia bancaria.)*
+                    </p>
+                </div>
+
+                <button id="back-to-voting-btn" class="button-primary mt-8">Volver a la Votación</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Caja de Mensajes Personalizada -->
+    <div id="message-box" class="message-box"></div>
+
+    <!-- Pie de Página -->
+    <footer class="bg-gray-800 text-white text-center py-8 rounded-t-lg">
+        <p class="text-sm sm:text-base">&copy; 2025 Javier Espinosa Mejías & Maite Prieto Vellisco. Todos los derechos reservados.</p>
+        <p class="text-sm sm:text-base mt-2">¡Gracias por ser parte de nuestra historia!</p>
+        <p class="text-xs mt-4">Diseñado con amor para Javier y Maite.</p>
+    </footer>
+
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Global variables for Firebase config and app ID
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        let app;
+        let db;
+        let auth;
+        let userId = null;
+        let hasVoted = false; // Flag to track if the current user has voted
+
+        // Function to show a custom message box
+        function showMessageBox(message) {
+            const msgBox = document.getElementById('message-box');
+            msgBox.textContent = message;
+            msgBox.style.display = 'block';
+            setTimeout(() => {
+                msgBox.style.display = 'none';
+            }, 3000); // Hide after 3 seconds
+        }
+
+        window.onload = async function() {
+            try {
+                // Initialize Firebase
+                app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                // Authenticate user
+                if (initialAuthToken) {
+                    await signInWithCustomToken(auth, initialAuthToken);
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                // Listen for auth state changes to get user ID
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        userId = user.uid;
+                        document.getElementById('user-id-display').textContent = `Tu ID de usuario: ${userId}`;
+                        setupRealtimeVotes();
+                        checkIfUserVoted();
+                    } else {
+                        // If for some reason auth fails, generate a random ID
+                        userId = crypto.randomUUID();
+                        document.getElementById('user-id-display').textContent = `Tu ID de usuario: ${userId} (Anónimo)`;
+                        setupRealtimeVotes();
+                        // For anonymous users, we rely on session or local storage for voting history
+                        // For simplicity in this example, we'll allow anonymous users to vote once per session.
+                        // A more robust solution would involve storing anonymous user IDs in Firestore.
+                    }
+                });
+
+            } catch (error) {
+                console.error("Error initializing Firebase or authenticating:", error);
+                document.getElementById('user-id-display').textContent = `Error al cargar ID de usuario.`;
+                showMessageBox("Error al cargar la aplicación. Por favor, inténtalo de nuevo.");
+            }
+
+            // Set up event listeners for vote buttons
+            document.querySelectorAll('.vote-button').forEach(button => {
+                button.addEventListener('click', async (event) => {
+                    if (!userId) {
+                        showMessageBox("Cargando usuario... Por favor, espera.");
+                        return;
+                    }
+                    if (hasVoted) {
+                        showMessageBox("Ya has votado. ¡Gracias!");
+                        return;
+                    }
+
+                    // Use currentTarget to ensure we get the data-option from the button itself
+                    const option = event.currentTarget.dataset.option;
+                    if (!option) {
+                        console.error("Error: 'option' is undefined. data-option attribute missing on button or target is not the button.");
+                        showMessageBox("Error interno: Opción de voto no encontrada.");
+                        return;
+                    }
+                    await recordVote(option);
+                });
+            });
+
+            // Event listener for the contribution form submission
+            document.getElementById('contribution-form').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                const nombre = document.getElementById('nombre').value;
+                const cantidad = document.getElementById('cantidad').value;
+                const mensaje = document.getElementById('mensaje').value;
+                const chosenOption = document.getElementById('chosen-honeymoon-option').textContent;
+
+                // Simulate sending data (in a real app, this would go to a server)
+                console.log(`Contribución recibida:
+                    Nombre: ${nombre}
+                    Cantidad: ${cantidad}€
+                    Mensaje: ${mensaje}
+                    Opción de Luna de Miel: ${chosenOption}`);
+
+                showMessageBox(`¡Gracias, ${nombre}! Tu contribución de ${cantidad}€ para la luna de miel en ${chosenOption} ha sido registrada. Por favor, realiza la transferencia bancaria.`);
+
+                // Optionally, clear the form or disable it
+                event.target.reset(); // Clear the form fields
+            });
+
+
+            // Initialize and start countdown
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        };
+
+        async function checkIfUserVoted() {
+            if (!userId) return;
+            try {
+                const userVoteRef = doc(db, `artifacts/${appId}/users/${userId}/userVotes`, 'honeymoonVote');
+                const userVoteSnap = await getDoc(userVoteRef);
+                if (userVoteSnap.exists()) {
+                    const votedOption = userVoteSnap.data().option;
+                    if (votedOption) { // Check if votedOption is defined
+                        hasVoted = true;
+                        disableVoteButtons();
+                        showMessageBox(`Ya votaste por: ${votedOption}.`);
+                        // If user has already voted, show the contribution section directly
+                        document.getElementById('votacion-luna-miel').classList.add('hidden');
+                        document.getElementById('chosen-honeymoon-option').textContent = votedOption;
+                        document.getElementById('honeymoon-contribution-section').classList.remove('hidden');
+                    } else {
+                        console.warn("User vote document exists but 'option' field is undefined.", userVoteSnap.data());
+                        // If 'option' is undefined, treat as if not voted or handle as an error state
+                        // For now, we'll just log a warning and not set hasVoted = true based on an undefined option
+                    }
+                }
+            } catch (error) {
+                console.error("Error checking user vote:", error);
+            }
+        }
+
+        function disableVoteButtons() {
+            document.querySelectorAll('.vote-button').forEach(button => {
+                button.disabled = true;
+            });
+        }
+
+        async function recordVote(option) {
+            if (!userId) {
+                console.error("User ID not available.");
+                showMessageBox("Error: ID de usuario no disponible.");
+                return;
+            }
+
+            try {
+                // Reference to the document that stores vote counts
+                const votesRef = doc(db, `artifacts/${appId}/public/data/honeymoonVotes`, 'counts');
+                // Reference to the user's vote record (to prevent multiple votes)
+                const userVoteRef = doc(db, `artifacts/${appId}/users/${userId}/userVotes`, 'honeymoonVote');
+
+                // Check if the user has already voted
+                const userVoteSnap = await getDoc(userVoteRef);
+                if (userVoteSnap.exists()) {
+                    showMessageBox("Ya has votado. ¡Gracias!");
+                    hasVoted = true;
+                    disableVoteButtons();
+                    return;
+                }
+
+                // Get current votes and update transactionally
+                await setDoc(votesRef, {
+                    [option]: (await getDoc(votesRef)).data()?.[option] + 1 || 1
+                }, { merge: true });
+
+                // Record that this user has voted
+                await setDoc(userVoteRef, { option: option, timestamp: new Date() });
+
+                hasVoted = true;
+                disableVoteButtons();
+                showMessageBox(`¡Gracias por tu voto por ${option}!`);
+
+                // Show contribution section after successful vote
+                document.getElementById('votacion-luna-miel').classList.add('hidden');
+                document.getElementById('chosen-honeymoon-option').textContent = option.charAt(0).toUpperCase() + option.slice(1); // Capitalize first letter
+                document.getElementById('honeymoon-contribution-section').classList.remove('hidden');
+
+            } catch (e) {
+                console.error("Error adding document: ", e);
+                showMessageBox("Error al registrar tu voto. Por favor, inténtalo de nuevo.");
+            }
+        }
+
+        function setupRealtimeVotes() {
+            const votesRef = doc(db, `artifacts/${appId}/public/data/honeymoonVotes`, 'counts');
+
+            onSnapshot(votesRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    document.getElementById('votes-playa').textContent = data.playa || 0;
+                    document.getElementById('votes-montana').textContent = data.montana || 0;
+                    document.getElementById('votes-ciudad').textContent = data.ciudad || 0;
+                } else {
+                    // Document doesn't exist, initialize counts to 0
+                    setDoc(votesRef, { playa: 0, montana: 0, ciudad: 0 }, { merge: true }).catch(console.error);
+                }
+            }, (error) => {
+                console.error("Error getting real-time updates:", error);
+                showMessageBox("Error al obtener las actualizaciones de votos en tiempo real.");
+            });
+        }
+
+        // Countdown Timer Functionality
+        function updateCountdown() {
+            // Set your wedding date here (Year, Month (0-11), Day, Hour, Minute, Second)
+            const weddingDate = new Date("2025-11-07T19:00:00").getTime(); // 7 de noviembre de 2025 a las 19:00h
+
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").textContent = days < 10 ? '0' + days : days;
+            document.getElementById("hours").textContent = hours < 10 ? '0' + hours : hours;
+            document.getElementById("minutes").textContent = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById("seconds").textContent = seconds < 10 ? '0' + seconds : seconds;
+
+            if (distance < 0) {
+                clearInterval(this); // Stop the countdown
+                document.getElementById("countdown").innerHTML = "<p class='text-2xl font-bold text-white'>¡Ya nos hemos casado!</p>";
+            }
+        }
+    </script>
+</body>
+</html>
