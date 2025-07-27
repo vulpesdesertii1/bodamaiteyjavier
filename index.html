@@ -329,14 +329,30 @@
         </div>
     </section>
 
-    <button onclick="copyIBAN()" class="button-primary mt-4">Copiar IBAN</button>
+            <section id="pago" class="text-center my-20 px-4 fade-in-up">
+      <h2 class="section-title">Contribución a la Boda</h2>
+      <p class="text-lg sm:text-xl leading-relaxed mb-6 max-w-2xl mx-auto">
+        Si deseas hacernos un regalo, puedes realizar una transferencia bancaria 💌<br>
+        ¡Gracias por formar parte de este momento tan especial!
+      </p>
 
-<script>
-  function copyIBAN() {
-    navigator.clipboard.writeText("ES0400495177652016335582");
-    alert("IBAN copiado al portapapeles");
-  }
-</script>
+      <div class="card max-w-2xl mx-auto p-6 sm:p-8 text-left">
+        <p class="text-lg mb-4"><strong>💳 IBAN:</strong>
+          <span id="iban">ES04 0049 5177 6520 1633 5582</span>
+        </p>
+        <p class="text-lg mb-4"><strong>👤 Titular:</strong> Javier & Maite</p>
+        <p class="text-lg mb-6"><strong>📝 Concepto:</strong> Tu nombre completo</p>
+        <button onclick="copyIBAN()" class="button-primary mt-2">Copiar IBAN</button>
+
+        <p class="text-md text-gray-600 mt-6">
+          *Por favor, incluye tu nombre completo como concepto para poder agradecerte correctamente.*
+        </p>
+
+        <div class="section-image-container mt-6">
+          <img src="img/regalo.jpg" alt="Imagen decorativa sobre regalo" class="section-image">
+        </div>
+      </div>
+    </section>
 
 
     <!-- Footer -->
