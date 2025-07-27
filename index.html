@@ -176,6 +176,20 @@
                 grid-template-columns: 1fr; /* Una columna en móviles */
             }
         }
+        @keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.fade-in-up {
+    animation: fadeInUp 1s ease forwards;
+}
+
     </style>
 </head>
 <body>
