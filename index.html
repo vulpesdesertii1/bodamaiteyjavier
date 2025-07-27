@@ -295,48 +295,28 @@
     <p class="text-2xl sm:text-3xl md:text-4xl font-light">¡Nos casamos!</p>
     <p class="text-xl sm:text-2xl md:text-3xl font-semibold">7 de noviembre de 2025</p>
 
-    <div id="countdown" class="mt-8 flex justify-center mb-10">
-      <div class="countdown-item">
-        <span id="days" class="text-shadow-lg">00</span><span>Días</span>
-      </div>
-      <div class="countdown-item">
-        <span id="hours" class="text-shadow-lg">00</span><span>Horas</span>
-      </div>
-      <div class="countdown-item">
-        <span id="minutes" class="text-shadow-lg">00</span><span>Minutos</span>
-      </div>
-      <div class="countdown-item">
-        <span id="seconds" class="text-shadow-lg">00</span><span>Segundos</span>
-      </div>
-    </div>
-  </div>
-</header>
-    <!-- Floating message for copy notifications -->
-    <div id="message-box" class="message-box"></div>
-
-
     <!-- Countdown section -->
-    <section class="countdown-section">
-        <h2 class="text-3xl font-bold">Cuenta atrás</h2>
-        <div class="countdown-items">
-            <div class="countdown-item">
-                <span id="days">0</span>
-                <span>Días</span>
-            </div>
-            <div class="countdown-item">
-                <span id="hours">0</span>
-                <span>Horas</span>
-            </div>
-            <div class="countdown-item">
-                <span id="minutes">0</span>
-                <span>Minutos</span>
-            </div>
-            <div class="countdown-item">
-                <span id="seconds">0</span>
-                <span>Segundos</span>
-            </div>
+<section class="countdown-section text-center my-12">
+    <h2 class="text-3xl font-bold mb-6">Cuenta atrás</h2>
+    <div class="countdown-items flex justify-center gap-6 text-2xl font-semibold">
+        <div class="countdown-item text-center">
+            <span id="days" class="block text-4xl">0</span>
+            <span>Días</span>
         </div>
-    </section>
+        <div class="countdown-item text-center">
+            <span id="hours" class="block text-4xl">0</span>
+            <span>Horas</span>
+        </div>
+        <div class="countdown-item text-center">
+            <span id="minutes" class="block text-4xl">0</span>
+            <span>Minutos</span>
+        </div>
+        <div class="countdown-item text-center">
+            <span id="seconds" class="block text-4xl">0</span>
+            <span>Segundos</span>
+        </div>
+    </div>
+</section>
 
     <!-- Details section -->
     <section id="detalles" class="details-section">
