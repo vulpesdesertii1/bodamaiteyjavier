@@ -329,6 +329,16 @@
         </div>
     </section>
 
+    <button onclick="copyIBAN()" class="button-primary mt-4">Copiar IBAN</button>
+
+<script>
+  function copyIBAN() {
+    navigator.clipboard.writeText("ES0400495177652016335582");
+    alert("IBAN copiado al portapapeles");
+  }
+</script>
+
+
     <!-- Footer -->
     <footer>
         Gracias por acompañarnos en este día tan especial.
