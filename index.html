@@ -166,7 +166,8 @@
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            /* Use auto-fit so cards wrap nicely and adjust the min width for better mobile support */
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 1.5rem;
             max-width: 1100px;
             margin: 0 auto;
@@ -190,6 +191,48 @@
             color: var(--color-bg);
             text-align: center;
             padding: 2rem 1rem;
+        }
+
+        /* Responsive adjustments for mobile screens */
+        @media (max-width: 768px) {
+            /* Adjust hero section height and typography for small screens */
+            .hero {
+                height: 70vh;
+                padding: 0 1rem;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            /* Allow countdown items to wrap and reduce gaps */
+            .countdown-items {
+                flex-wrap: wrap;
+                gap: 1rem;
+                justify-content: center;
+            }
+            .countdown-item {
+                flex: 1 1 100px;
+                min-width: 70px;
+            }
+
+            /* Reduce section padding on small screens */
+            .details-section,
+            .gallery-section {
+                padding: 3rem 1rem;
+            }
+
+            /* Reduce gallery image height for mobile */
+            .gallery-grid img {
+                height: 200px;
+            }
+
+            /* Adjust gallery grid min width on smaller screens */
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
         }
     </style>
 </head>
@@ -251,7 +294,7 @@
             </div>
         </div>
         <div class="text-center">
-            <a class="map-link" href="https://www.google.com/maps/place/Finca+de+la+Ribera+-+INbodas/@40.0594147,-3.6171094,17z/data=!3m1!4b1!4m6!3m5!1s0xd42051aded0643f:0x8551796d79a6894e!8m2!3d40.0594106!4d-3.6145345!16s%2Fg%2F11bt_jwhw3?entry=ttu&g_ep=EgoyMDI1MDcyMy4wIKXMDSoASAFQAw%3D%3D">Abrir en Google Maps</a>
+            <a class="map-link" href="https://maps.google.com">Abrir en Google Maps</a>
         </div>
     </section>
 
@@ -259,12 +302,12 @@
     <section class="gallery-section">
         <h2 class="text-3xl font-bold text-center mb-8">Nuestra historia</h2>
         <div class="gallery-grid">
-            <img src="WhatsApp Image 2025-07-27 at 16.56.18.jpeg" alt="Nuestra primera cita">
-            <img src="c3d1df3b-343c-49fa-b815-9da0ba49f229.jpeg" alt="De paseito">
-            <img src="c0f41242-610a-403a-8ae6-c7584b6df232.jpeg" alt="Noche de playita">
-            <img src="a75b2986-8987-4acc-a1ac-4e40cb6bb569.jpeg" alt="LONDRES!">
-            <img src="a60a317a-356a-410b-ab54-bc9155852793.jpeg" alt="En el Tower Bridge">
-            <img src="994c6f6b-154b-4191-b03b-28f48fb14521.jpeg" alt="De cueveo">
+            <img src="img/story1.jpg" alt="Historia 1">
+            <img src="img/story2.jpg" alt="Historia 2">
+            <img src="img/story3.jpg" alt="Historia 3">
+            <img src="img/story4.jpg" alt="Historia 4">
+            <img src="img/story5.jpg" alt="Historia 5">
+            <img src="img/story6.jpg" alt="Historia 6">
         </div>
     </section>
 
