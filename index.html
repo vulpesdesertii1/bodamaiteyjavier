@@ -15,6 +15,7 @@
             --color-accent: #f4d4d4; /* rosa empolvado para acentos */
             --color-secondary: #b5836f; /* tono terracota suave para botones */
             --color-text:   #f6d3d7; /* marrón grisáceo para texto */
+            --color-head:  #72544d;
             --color-heading: #72544d; /* marrón profundo para titulares */
         }
 
@@ -61,7 +62,13 @@
             line-height: 1.6;
         }
 
-        h1, h2, h3 {
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--color-head);
+            margin: 0;
+        }
+        
+        h2, h3 {
             font-family: 'Playfair Display', serif;
             color: var(--color-heading);
             margin: 0;
