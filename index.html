@@ -362,17 +362,17 @@
 
   <div class="max-w-5xl mx-auto space-y-16">
 
-   <section id="momento1" class="relative w-full overflow-hidden px-6 py-10 bg-white">
-  <div class="flex flex-col md:flex-row items-center gap-6 h-[100vh]">
+   <section id="momento1" class="w-full overflow-hidden py-10 bg-white">
+  <div class="flex flex-col md:flex-row items-center gap-6 h-[100vh] px-0 md:px-0">
 
-    <!-- Galería horizontal con scroll activado por scroll vertical -->
+    <!-- Carrusel -->
     <div class="w-full md:w-1/2 overflow-hidden relative h-72 sm:h-80 md:h-96">
-      <div id="scroll-track" class="flex gap-4 h-full">
-        <img src="primera cita.jpeg" class="h-full rounded-xl shadow-md object-cover" />
-        <img src="cita 2.jpeg" class="h-full rounded-xl shadow-md object-cover" />
-        <img src="cita 3.jpeg" class="h-full rounded-xl shadow-md object-cover" />
-        <img src="primera cita.jpeg" class="h-full rounded-xl shadow-md object-cover" />
-        <img src="cita 2.jpeg" class="h-full rounded-xl shadow-md object-cover" />
+      <div id="scroll-track" class="flex h-full">
+        <img src="primera cita.jpeg" class="h-full object-cover flex-shrink-0 w-auto rounded-xl" />
+        <img src="cita 2.jpeg" class="h-full object-cover flex-shrink-0 w-auto rounded-xl" />
+        <img src="cita 3.jpeg" class="h-full object-cover flex-shrink-0 w-auto rounded-xl" />
+        <img src="primera cita.jpeg" class="h-full object-cover flex-shrink-0 w-auto rounded-xl" />
+        <img src="cita 2.jpeg" class="h-full object-cover flex-shrink-0 w-auto rounded-xl" />
       </div>
     </div>
 
@@ -654,22 +654,25 @@
   gsap.registerPlugin(ScrollTrigger);
 
   const track = document.getElementById("scroll-track");
+  const container = track.parentElement;
 
-  gsap.to(track, {
-    x: () => {
-      const containerWidth = track.parentElement.offsetWidth;
-      const trackWidth = track.scrollWidth;
-      return -(trackWidth - containerWidth);
-    },
-    ease: "none",
-    scrollTrigger: {
-      trigger: "#momento1",
-      start: "top center",
-      end: "bottom center",
-      scrub: true,
-    }
+  // Esperamos a que todo cargue para medir correctamente
+  window.addEventListener("load", () => {
+    const maxTranslate = track.scrollWidth - container.clientWidth;
+
+    gsap.to(track, {
+      x: -maxTranslate,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#momento1",
+        start: "top center",
+        end: "bottom center",
+        scrub: true,
+      }
+    });
   });
 </script>
+
 
     
 </body>
