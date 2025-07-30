@@ -525,7 +525,35 @@
   }
 </script>
 
+<section id="sube-fotos" class="py-20 px-4 bg-[var(--color-accent)] text-center">
+  <h2 class="text-4xl font-bold mb-4 text-[var(--color-heading)]">¡Sube tus fotos de la boda!</h2>
+  <p class="text-lg text-[var(--color-text)] max-w-xl mx-auto mb-10">
+    Nos encantaría ver el día a través de tus ojos 📸  
+    Sube tus fotos directamente a nuestra galería, ya sea el selfie en la pista de baile o la copa que casi se cae en el brindis.  
+    ¡Todo cuenta! 🥂
+  </p>
 
+  <!-- QR + Botón -->
+  <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+    <!-- QR estático -->
+    <div class="w-40 h-40 bg-white p-2 rounded-xl shadow-md">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://app.eventocam.com/galeria/i80xO2OiWGZ6/subir&size=200x200" 
+           alt="QR para subir fotos" 
+           class="w-full h-full object-contain" />
+    </div>
+
+    <!-- Botón para abrir el enlace -->
+    <a href="https://app.eventocam.com/galeria/i80xO2OiWGZ6/subir" 
+       target="_blank"
+       class="bg-[var(--color-secondary)] text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:bg-[#9c6955] transition-all text-lg">
+      📤 Subir mis fotos ahora
+    </a>
+  </div>
+
+  <p class="mt-10 text-sm text-gray-700 italic">
+    *No necesitas cuenta ni instalar nada. Solo abre el enlace o escanea el QR desde tu móvil.*
+  </p>
+</section>
 
     <!-- Footer -->
     <footer>
