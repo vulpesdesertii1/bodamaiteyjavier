@@ -396,9 +396,9 @@
       const maxScroll = rect.height - windowHeight;
       const scrollOffset = Math.min(-rect.top, maxScroll);
 
-      // Desplazamiento proporcional según la anchura del carrusel
+      // Ancho real del carrusel y contenedor
       const trackWidth = track.scrollWidth;
-      const containerWidth = section.querySelector('.overflow-hidden').offsetWidth;
+      const containerWidth = track.parentElement.offsetWidth;
       const maxTranslate = trackWidth - containerWidth;
 
       const progress = scrollOffset / maxScroll;
@@ -408,6 +408,7 @@
     }
   });
 </script>
+
 
       
     <!-- MOMENTO 2 -->
