@@ -358,23 +358,11 @@
 
   <div class="max-w-5xl mx-auto space-y-16">
 
-    <!-- MOMENTO 1 – Versión con scroll horizontal de imágenes -->
-<div class="flex flex-col md:flex-row items-center gap-6">
+   <!-- MOMENTO 1 – Scroll vertical con desplazamiento horizontal de imágenes -->
+<section id="scroll-cita" class="relative w-full h-[120vh] overflow-hidden flex flex-col md:flex-row items-center gap-6 px-4">
   
-  <!-- Galería de imágenes deslizables -->
-  <div class="w-full md:w-1/2 overflow-x-auto">
-    <div class="flex gap-4 w-max">
-      <img src="primera cita.jpeg" alt="Primera cita 1" class="h-64 sm:h-72 md:h-80 rounded-xl shadow-md object-cover" />
-      <img src="cita 2.jpeg" alt="Primera cita 2" class="h-64 sm:h-72 md:h-80 rounded-xl shadow-md object-cover" />
-      <img src="cita 3.jpeg" alt="Primera cita 3" class="h-64 sm:h-72 md:h-80 rounded-xl shadow-md object-cover" />
-      <!-- Repetimos para loop suave -->
-      <img src="primera cita.jpeg" alt="Primera cita 1 bis" class="h-64 sm:h-72 md:h-80 rounded-xl shadow-md object-cover" />
-      <img src="cita 2.jpeg" alt="Primera cita 2 bis" class="h-64 sm:h-72 md:h-80 rounded-xl shadow-md object-cover" />
-    </div>
-  </div>
-
-  <!-- Texto -->
-  <div class="md:w-1/2 text-[color:var(--color-text)] text-base sm:text-lg leading-relaxed">
+  <!-- Texto fijo a la izquierda (en desktop) -->
+  <div class="md:w-1/2 w-full sticky top-1/4 self-start text-[color:var(--color-text)] text-base sm:text-lg leading-relaxed z-10 bg-white/80 backdrop-blur-md p-4 rounded-xl">
     <h3 class="text-2xl font-semibold mb-2">Un encuentro inesperado</h3>
     <p>
       Nos conocimos gracias a una app —sí, de esas que no esperas que funcionen— y decidimos quedar para comer sushi.  
@@ -383,7 +371,19 @@
     </p>
   </div>
 
-</div>
+  <!-- Carrusel horizontal controlado por scroll vertical -->
+  <div class="md:w-1/2 w-full h-[80vh] overflow-hidden">
+    <div id="scroll-cita-track" class="flex gap-4 w-max h-full transition-transform duration-300 ease-linear">
+      <img src="primera cita.jpeg" alt="Primera cita 1" class="h-full rounded-xl shadow-md object-cover" />
+      <img src="cita 2.jpeg" alt="Primera cita 2" class="h-full rounded-xl shadow-md object-cover" />
+      <img src="cita 3.jpeg" alt="Primera cita 3" class="h-full rounded-xl shadow-md object-cover" />
+      <img src="primera cita.jpeg" alt="Primera cita 1 bis" class="h-full rounded-xl shadow-md object-cover" />
+      <img src="cita 2.jpeg" alt="Primera cita 2 bis" class="h-full rounded-xl shadow-md object-cover" />
+    </div>
+  </div>
+
+</section>
+
 
     <!-- MOMENTO 2 -->
     <div class="flex flex-col md:flex-row-reverse items-center gap-6">
@@ -405,6 +405,21 @@
 
   </div>
 </section>
+
+    <script>
+  const track = document.getElementById("scroll-cita-track");
+  const section = document.getElementById("scroll-cita");
+
+  window.addEventListener("scroll", () => {
+    const rect = section.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    if (rect.top <= 0 && rect.bottom >= windowHeight) {
+      const scrollAmount = Math.min(-rect.top, rect.height - windowHeight);
+      track.style.transform = `translateX(-${scrollAmount}px)`;
+    }
+  });
+</script>
 
 
     <section id="viajes" class="text-center my-20 px-4 fade-in-up">
