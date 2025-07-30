@@ -358,14 +358,29 @@
 
   <div class="max-w-5xl mx-auto space-y-16">
 
-    <!-- MOMENTO 1 -->
-    <div class="flex flex-col md:flex-row items-center gap-6">
-      <img src="primera cita.jpeg" alt="Cómo nos conocimos" class="w-full md:w-1/2 rounded-xl shadow-lg object-cover h-64 sm:h-72 md:h-80">
-      <div class="md:w-1/2 text-[color:var(--color-text)] text-base sm:text-lg leading-relaxed">
-        <h3 class="text-2xl font-semibold mb-2">Un encuentro inesperado</h3>
-        <p>Nos conocimos gracias a una app —sí, de esas que no esperas que funcionen— y decidimos quedar para comer sushi. Lo curioso: era la primera vez que Maite lo probaba. Entre risas, palillos torpes y conversación sin filtros, descubrimos una conexión tan natural que parecía que ya nos conocíamos de antes.</p>
-      </div>
+    <!-- MOMENTO 1 – Versión con scroll horizontal de imágenes -->
+<div class="flex flex-col md:flex-row items-center gap-6">
+  
+  <!-- Galería de imágenes deslizables -->
+  <div class="w-full md:w-1/2 overflow-x-auto">
+    <div class="flex gap-4 w-max">
+      <img src="primera cita.jpeg" alt="Primera cita 1" class="h-64 sm:h-72 md:h-80 rounded-xl shadow-md object-cover" />
+      <img src="cita 2.jpeg" alt="Primera cita 2" class="h-64 sm:h-72 md:h-80 rounded-xl shadow-md object-cover" />
+      <img src="cita 3.jpeg" alt="Primera cita 3" class="h-64 sm:h-72 md:h-80 rounded-xl shadow-md object-cover" />
     </div>
+  </div>
+
+  <!-- Texto -->
+  <div class="md:w-1/2 text-[color:var(--color-text)] text-base sm:text-lg leading-relaxed">
+    <h3 class="text-2xl font-semibold mb-2">Un encuentro inesperado</h3>
+    <p>
+      Nos conocimos gracias a una app —sí, de esas que no esperas que funcionen— y decidimos quedar para comer sushi.  
+      Lo curioso: era la primera vez que Maite lo probaba. Entre risas, palillos torpes y conversación sin filtros,  
+      descubrimos una conexión tan natural que parecía que ya nos conocíamos de antes.
+    </p>
+  </div>
+
+</div>
 
     <!-- MOMENTO 2 -->
     <div class="flex flex-col md:flex-row-reverse items-center gap-6">
