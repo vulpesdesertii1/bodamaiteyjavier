@@ -418,6 +418,28 @@
   </div>
 </section>
 
+<!-- SCRIPT: ScrollTrigger con inicio anticipado -->
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  window.addEventListener("load", () => {
+    const track = document.getElementById("scroll-track");
+    const container = track.parentElement;
+    const maxTranslate = track.scrollWidth - container.clientWidth;
+
+    gsap.to(track, {
+      x: -maxTranslate,
+      ease: "power1.out",
+      scrollTrigger: {
+        trigger: "#momento1",
+        start: "top 80%",  // ⬅️ Empieza antes
+        end: "bottom center",
+        scrub: true,
+      }
+    });
+  });
+</script>
+
 
     <section id="viajes" class="text-center my-20 px-4 fade-in-up">
       <h2 class="text-4xl font-bold text-center mb-12 text-[color:var(--color-heading)]">Elige nuestro viaje soñado</h2>
