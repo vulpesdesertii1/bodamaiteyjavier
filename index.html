@@ -387,8 +387,14 @@
     <script>
   const section = document.getElementById('momento1');
   const track = document.getElementById('scroll-track');
+  const container = track.parentElement;
 
-  window.addEventListener('scroll', () => {
+  let currentX = 0;
+  let targetX = 0;
+
+  const velocityFactor = 0.5; // más lento = menor valor
+
+  function animate() {
     const rect = section.getBoundingClientRect();
     const windowHeight = window.innerHeight;
 
@@ -397,20 +403,24 @@
       const scrollOffset = Math.min(-rect.top, maxScroll);
 
       const trackWidth = track.scrollWidth;
-      const containerWidth = track.parentElement.offsetWidth;
+      const containerWidth = container.offsetWidth;
       const maxTranslate = trackWidth - containerWidth;
 
       const progress = scrollOffset / maxScroll;
+      targetX = maxTranslate * progress * velocityFactor;
 
-      // 🐢 Factor de velocidad: cuanto menor, más lento (ej: 0.5 = 50%)
-      const velocityFactor = 0.5;
+      // Interpolación suave (lerp)
+      currentX += (targetX - currentX) * 0.1;
 
-      const translateX = maxTranslate * progress * velocityFactor;
-
-      track.style.transform = `translateX(-${translateX}px)`;
+      track.style.transform = `translateX(-${currentX}px)`;
     }
-  });
+
+    requestAnimationFrame(animate);
+  }
+
+  requestAnimationFrame(animate);
 </script>
+
       
     <!-- MOMENTO 2 -->
     <div class="flex flex-col md:flex-row-reverse items-center gap-6">
