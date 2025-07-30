@@ -396,20 +396,21 @@
       const maxScroll = rect.height - windowHeight;
       const scrollOffset = Math.min(-rect.top, maxScroll);
 
-      // Ancho real del carrusel y contenedor
       const trackWidth = track.scrollWidth;
       const containerWidth = track.parentElement.offsetWidth;
       const maxTranslate = trackWidth - containerWidth;
 
       const progress = scrollOffset / maxScroll;
-      const translateX = maxTranslate * progress * 0.8;
+
+      // 🐢 Factor de velocidad: cuanto menor, más lento (ej: 0.5 = 50%)
+      const velocityFactor = 0.5;
+
+      const translateX = maxTranslate * progress * velocityFactor;
 
       track.style.transform = `translateX(-${translateX}px)`;
     }
   });
 </script>
-
-
       
     <!-- MOMENTO 2 -->
     <div class="flex flex-col md:flex-row-reverse items-center gap-6">
