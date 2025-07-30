@@ -358,33 +358,58 @@
 
   <div class="max-w-5xl mx-auto space-y-16">
 
-   <!-- MOMENTO 1 – Scroll vertical con desplazamiento horizontal de imágenes -->
-<section id="scroll-cita" class="relative w-full h-[120vh] overflow-hidden flex flex-col md:flex-row items-center gap-6 px-4">
-  
-  <!-- Texto fijo a la izquierda (en desktop) -->
-  <div class="md:w-1/2 w-full sticky top-1/4 self-start text-[color:var(--color-text)] text-base sm:text-lg leading-relaxed z-10 bg-white/80 backdrop-blur-md p-4 rounded-xl">
-    <h3 class="text-2xl font-semibold mb-2">Un encuentro inesperado</h3>
-    <p>
-      Nos conocimos gracias a una app —sí, de esas que no esperas que funcionen— y decidimos quedar para comer sushi.  
-      Lo curioso: era la primera vez que Maite lo probaba. Entre risas, palillos torpes y conversación sin filtros,  
-      descubrimos una conexión tan natural que parecía que ya nos conocíamos de antes.
-    </p>
-  </div>
+   <section id="momento1" class="relative w-full h-[150vh] overflow-hidden px-6 py-10">
+  <div class="flex flex-col md:flex-row items-center gap-6 h-full">
 
-  <!-- Carrusel horizontal controlado por scroll vertical -->
-  <div class="md:w-1/2 w-full h-[80vh] overflow-hidden">
-    <div id="scroll-cita-track" class="flex gap-4 w-max h-full transition-transform duration-300 ease-linear">
-      <img src="primera cita.jpeg" alt="Primera cita 1" class="h-full rounded-xl shadow-md object-cover" />
-      <img src="cita 2.jpeg" alt="Primera cita 2" class="h-full rounded-xl shadow-md object-cover" />
-      <img src="cita 3.jpeg" alt="Primera cita 3" class="h-full rounded-xl shadow-md object-cover" />
-      <img src="primera cita.jpeg" alt="Primera cita 1 bis" class="h-full rounded-xl shadow-md object-cover" />
-      <img src="cita 2.jpeg" alt="Primera cita 2 bis" class="h-full rounded-xl shadow-md object-cover" />
+    <!-- Galería horizontal -->
+    <div class="w-full md:w-1/2 overflow-hidden relative h-72 sm:h-80 md:h-96">
+      <div id="scroll-track" class="flex gap-4 absolute top-0 left-0 h-full transition-transform duration-100 ease-linear">
+        <img src="primera cita.jpeg" alt="Primera cita 1" class="h-full rounded-xl shadow-md object-cover" />
+        <img src="cita 2.jpeg" alt="Primera cita 2" class="h-full rounded-xl shadow-md object-cover" />
+        <img src="cita 3.jpeg" alt="Primera cita 3" class="h-full rounded-xl shadow-md object-cover" />
+        <img src="primera cita.jpeg" alt="Primera cita 1 bis" class="h-full rounded-xl shadow-md object-cover" />
+        <img src="cita 2.jpeg" alt="Primera cita 2 bis" class="h-full rounded-xl shadow-md object-cover" />
+      </div>
+    </div>
+
+    <!-- Texto -->
+    <div class="md:w-1/2 text-[color:var(--color-text)] text-base sm:text-lg leading-relaxed bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-md">
+      <h3 class="text-2xl font-semibold mb-2">Un encuentro inesperado</h3>
+      <p>
+        Nos conocimos gracias a una app —sí, de esas que no esperas que funcionen— y decidimos quedar para comer sushi.  
+        Lo curioso: era la primera vez que Maite lo probaba. Entre risas, palillos torpes y conversación sin filtros,  
+        descubrimos una conexión tan natural que parecía que ya nos conocíamos de antes.
+      </p>
     </div>
   </div>
-
 </section>
 
+    <script>
+  const section = document.getElementById('momento1');
+  const track = document.getElementById('scroll-track');
 
+  window.addEventListener('scroll', () => {
+    const rect = section.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    if (rect.top <= 0 && rect.bottom >= windowHeight) {
+      const maxScroll = rect.height - windowHeight;
+      const scrollOffset = Math.min(-rect.top, maxScroll);
+
+      // Desplazamiento proporcional según la anchura del carrusel
+      const trackWidth = track.scrollWidth;
+      const containerWidth = section.querySelector('.overflow-hidden').offsetWidth;
+      const maxTranslate = trackWidth - containerWidth;
+
+      const progress = scrollOffset / maxScroll;
+      const translateX = maxTranslate * progress;
+
+      track.style.transform = `translateX(-${translateX}px)`;
+    }
+  });
+</script>
+
+      
     <!-- MOMENTO 2 -->
     <div class="flex flex-col md:flex-row-reverse items-center gap-6">
       <img src="marruecos 1.jpeg" alt="Primer viaje" class="w-full md:w-1/2 rounded-xl shadow-lg object-cover h-64 sm:h-72 md:h-80">
@@ -405,21 +430,6 @@
 
   </div>
 </section>
-
-    <script>
-  const track = document.getElementById("scroll-cita-track");
-  const section = document.getElementById("scroll-cita");
-
-  window.addEventListener("scroll", () => {
-    const rect = section.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-
-    if (rect.top <= 0 && rect.bottom >= windowHeight) {
-      const scrollAmount = Math.min(-rect.top, rect.height - windowHeight);
-      track.style.transform = `translateX(-${scrollAmount}px)`;
-    }
-  });
-</script>
 
 
     <section id="viajes" class="text-center my-20 px-4 fade-in-up">
