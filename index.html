@@ -6,6 +6,10 @@
     <title>Nuestra Boda – Javier &amp; Maite</title>
     <!-- Tailwind CSS CDN for layout utilities -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -358,12 +362,12 @@
 
   <div class="max-w-5xl mx-auto space-y-16">
 
-   <section id="momento1" class="relative w-full h-[200vh] overflow-hidden px-6 py-10 bg-white">
-  <div class="flex flex-col md:flex-row items-center gap-6 h-screen sticky top-0">
+   <section id="momento1" class="relative w-full overflow-hidden px-6 py-10 bg-white">
+  <div class="flex flex-col md:flex-row items-center gap-6 h-[100vh]">
 
-    <!-- Galería horizontal con carrusel -->
+    <!-- Galería horizontal con scroll activado por scroll vertical -->
     <div class="w-full md:w-1/2 overflow-hidden relative h-72 sm:h-80 md:h-96">
-      <div id="scroll-track" class="flex gap-4 h-full transition-transform duration-200 ease-out will-change-transform">
+      <div id="scroll-track" class="flex gap-4 h-full">
         <img src="primera cita.jpeg" class="h-full rounded-xl shadow-md object-cover" />
         <img src="cita 2.jpeg" class="h-full rounded-xl shadow-md object-cover" />
         <img src="cita 3.jpeg" class="h-full rounded-xl shadow-md object-cover" />
@@ -383,35 +387,6 @@
     </div>
   </div>
 </section>
-
-<script>
-  const section = document.getElementById("momento1");
-  const track = document.getElementById("scroll-track");
-
-  function updateScroll() {
-    const rect = section.getBoundingClientRect();
-    const height = section.offsetHeight;
-    const windowHeight = window.innerHeight;
-
-    const scrollY = window.scrollY || window.pageYOffset;
-    const sectionTop = section.offsetTop;
-    const sectionBottom = sectionTop + height - windowHeight;
-
-    if (scrollY >= sectionTop && scrollY <= sectionBottom) {
-      const progress = (scrollY - sectionTop) / (height - windowHeight);
-      const trackWidth = track.scrollWidth;
-      const containerWidth = track.parentElement.offsetWidth;
-      const maxTranslate = trackWidth - containerWidth;
-
-      track.style.transform = `translateX(-${maxTranslate * progress}px)`;
-    }
-  }
-
-  window.addEventListener("scroll", updateScroll);
-  window.addEventListener("resize", updateScroll);
-</script>
-
-
       
     <!-- MOMENTO 2 -->
     <div class="flex flex-col md:flex-row-reverse items-center gap-6">
@@ -674,5 +649,28 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
     </script>
+
+    <script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  const track = document.getElementById("scroll-track");
+
+  gsap.to(track, {
+    x: () => {
+      const containerWidth = track.parentElement.offsetWidth;
+      const trackWidth = track.scrollWidth;
+      return -(trackWidth - containerWidth);
+    },
+    ease: "none",
+    scrollTrigger: {
+      trigger: "#momento1",
+      start: "top center",
+      end: "bottom center",
+      scrub: true,
+    }
+  });
+</script>
+
+    
 </body>
 </html>
