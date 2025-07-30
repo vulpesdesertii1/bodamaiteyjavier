@@ -402,7 +402,7 @@
       const maxTranslate = trackWidth - containerWidth;
 
       const progress = scrollOffset / maxScroll;
-      const translateX = maxTranslate * progress;
+      const translateX = maxTranslate * progress * 0.8;
 
       track.style.transform = `translateX(-${translateX}px)`;
     }
