@@ -360,23 +360,23 @@
 <section id="historia" class="py-20 px-4 bg-gray-50">
   <h2 class="text-4xl font-bold text-center mb-12 text-[color:var(--color-heading)]">Nuestra historia</h2>
 
-  <div class="max-w-5xl mx-auto space-y-16">
+  <div class="max-w-5xl mx-auto space-y-24">
 
     <!-- MOMENTO 1 - CITA Y CARRUSEL -->
-    <section id="momento1" class="w-full overflow-hidden bg-white">
-      <div class="flex flex-col md:flex-row items-center gap-6 min-h-screen px-0">
+    <section id="momento1" class="w-full overflow-x-hidden bg-white py-16">
+      <div class="flex flex-col md:flex-row items-center gap-12 px-0">
 
         <!-- Carrusel horizontal -->
         <div class="w-full md:w-1/2 overflow-hidden relative h-72 sm:h-80 md:h-96">
-          <div id="scroll-track" class="flex gap-4 h-full">
-            <img src="primera cita.jpeg" class="h-full object-cover flex-shrink-0 w-auto rounded-xl shadow-md" />
-            <img src="cita 2.jpeg" class="h-full object-cover flex-shrink-0 w-auto rounded-xl shadow-md" />
-            <img src="cita 3.jpeg" class="h-full object-cover flex-shrink-0 w-auto rounded-xl shadow-md" />
+          <div id="scroll-track" class="flex gap-4 h-full will-change-transform">
+            <img src="primera cita.jpeg" class="h-full w-auto object-cover flex-shrink-0 rounded-xl shadow-md" />
+            <img src="cita 2.jpeg" class="h-full w-auto object-cover flex-shrink-0 rounded-xl shadow-md" />
+            <img src="cita 3.jpeg" class="h-full w-auto object-cover flex-shrink-0 rounded-xl shadow-md" />
           </div>
         </div>
 
         <!-- Texto acompañante -->
-        <div class="md:w-1/2 bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-md text-[color:var(--color-text)] text-base sm:text-lg leading-relaxed">
+        <div class="md:w-1/2 bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-md text-[color:var(--color-text)] text-base sm:text-lg leading-relaxed">
           <h3 class="text-2xl font-semibold mb-2">Un encuentro inesperado</h3>
           <p>
             Nos conocimos gracias a una app —sí, de esas que no esperas que funcionen— y decidimos quedar para comer sushi.
@@ -418,7 +418,7 @@
   </div>
 </section>
 
-<!-- SCRIPT: ScrollTrigger con inicio anticipado -->
+<!-- SCRIPT: ScrollTrigger con ajuste fluido -->
 <script>
   gsap.registerPlugin(ScrollTrigger);
 
@@ -429,12 +429,13 @@
 
     gsap.to(track, {
       x: -maxTranslate,
-      ease: "power1.out",
+      ease: "power1.inOut",
       scrollTrigger: {
         trigger: "#momento1",
-        start: "top 80%",  // ⬅️ Empieza antes
+        start: "top 70%",
         end: "bottom center",
-        scrub: true,
+        scrub: 1,
+        invalidateOnRefresh: true,
       }
     });
   });
