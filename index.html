@@ -368,7 +368,7 @@
 
         <!-- Carrusel horizontal -->
         <div class="w-full md:w-1/2 relative h-72 sm:h-80 md:h-96 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
-          <div id="scroll-track" class="flex gap-4 h-full will-change-transform">
+          <div id="scroll-track" class="flex gap-4 h-full will-change-transform touch-pan-x">
             <img src="primera cita.jpeg" class="h-full w-auto object-cover flex-shrink-0 rounded-xl shadow-md snap-start" />
             <img src="cita 2.jpeg" class="h-full w-auto object-cover flex-shrink-0 rounded-xl shadow-md snap-start" />
             <img src="cita 3.jpeg" class="h-full w-auto object-cover flex-shrink-0 rounded-xl shadow-md snap-start" />
@@ -393,7 +393,7 @@
 
         <!-- Carrusel horizontal -->
         <div class="w-full md:w-1/2 relative h-72 sm:h-80 md:h-96 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
-          <div id="scroll-track-2" class="flex gap-4 h-full will-change-transform">
+          <div id="scroll-track-2" class="flex gap-4 h-full will-change-transform touch-pan-x">
             <img src="marruecos 1.jpeg" class="h-full w-auto object-cover flex-shrink-0 rounded-xl shadow-md snap-start" />
             <img src="egipto 2.jpeg" class="h-full w-auto object-cover flex-shrink-0 rounded-xl shadow-md snap-start" />
             <img src="mexico.jpeg" class="h-full w-auto object-cover flex-shrink-0 rounded-xl shadow-md snap-start" />
@@ -420,7 +420,7 @@
 
         <!-- Carrusel horizontal -->
         <div class="w-full md:w-1/2 relative h-72 sm:h-80 md:h-96 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
-          <div id="scroll-track-3" class="flex gap-4 h-full will-change-transform">
+          <div id="scroll-track-3" class="flex gap-4 h-full will-change-transform touch-pan-x">
             <img src="beso.jpeg" class="h-full w-auto object-cover flex-shrink-0 rounded-xl shadow-md snap-start" />
             <img src="final 1.jpeg" class="h-full w-auto object-cover flex-shrink-0 rounded-xl shadow-md snap-start" />
             <img src="final 2.jpeg" class="h-full w-auto object-cover flex-shrink-0 rounded-xl shadow-md snap-start" />
@@ -459,13 +459,13 @@
       const maxTranslate = track.scrollWidth - container.clientWidth;
 
       gsap.to(track, {
-        x: -maxTranslate,
+        x: () => -maxTranslate,
         ease: "power1.inOut",
         scrollTrigger: {
           trigger: triggerId,
-          start: "top 90%",
+          start: "top 95%",
           end: "bottom top",
-          scrub: 0.3,
+          scrub: 0.1,
           invalidateOnRefresh: true,
         }
       });
@@ -480,6 +480,9 @@
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+  .touch-pan-x {
+    touch-action: pan-x;
   }
 </style>
 
