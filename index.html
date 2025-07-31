@@ -387,7 +387,7 @@
       </div>
     </section>
 
-      <!-- MOMENTO 2 - VIAJES -->
+    <!-- MOMENTO 2 - VIAJES -->
     <section id="momento2" class="w-full overflow-x-hidden bg-white py-16">
       <div class="flex flex-col md:flex-row-reverse items-center gap-12 px-0">
 
@@ -413,14 +413,14 @@
         </div>
       </div>
     </section>
-      
-      <!-- MOMENTO 3 - CIERRE -->
+
+    <!-- MOMENTO 3 - CIERRE -->
     <section id="momento3" class="w-full overflow-x-hidden bg-white py-16">
       <div class="flex flex-col md:flex-row items-center gap-12 px-0">
 
         <!-- Carrusel horizontal -->
         <div class="w-full md:w-1/2 overflow-hidden relative h-72 sm:h-80 md:h-96">
-          <div id="scroll-track" class="flex gap-4 h-full will-change-transform">
+          <div id="scroll-track-3" class="flex gap-4 h-full will-change-transform">
             <img src="beso.jpeg" class="h-full w-auto object-cover flex-shrink-0 rounded-xl shadow-md" />
             <img src="final 1.jpeg" class="h-full w-auto object-cover flex-shrink-0 rounded-xl shadow-md" />
             <img src="final 2.jpeg" class="h-full w-auto object-cover flex-shrink-0 rounded-xl shadow-md" />
@@ -429,39 +429,49 @@
 
         <!-- Texto acompañante -->
         <div class="md:w-1/2 bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-md text-[color:var(--color-text)] text-base sm:text-lg leading-relaxed">
-          <h3 class="text-2xl font-semibold mb-2">Un encuentro inesperado</h3>
+          <h3 class="text-2xl font-semibold mb-2">...Y fueron felices y comieron perdices.</h3>
           <p>
-          No sabemos qué nos depara el futuro —otra mudanza, un perro, un robot que haga la compra o un viaje sin billete de vuelta—,
-          pero lo que sí tenemos claro es que, venga lo que venga, lo viviremos como siempre: juntos, con humor,
-          y compartiendo el último trozo de postre.
+            No sabemos qué nos depara el futuro —otra mudanza, un perro, un robot que haga la compra o un viaje sin billete de vuelta—,
+            pero lo que sí tenemos claro es que, venga lo que venga, lo viviremos como siempre: juntos, con humor,
+            y compartiendo el último trozo de postre.
           </p>
         </div>
       </div>
     </section>
 
-<!-- SCRIPT: ScrollTrigger con ajuste fluido -->
+  </div>
+</section>
+
+<!-- SCRIPT: ScrollTrigger con ajuste fluido para todos los carruseles -->
 <script>
   gsap.registerPlugin(ScrollTrigger);
 
   window.addEventListener("load", () => {
-    const track = document.getElementById("scroll-track");
-    const container = track.parentElement;
-    const maxTranslate = track.scrollWidth - container.clientWidth;
+    const config = [
+      { trackId: "scroll-track", triggerId: "#momento1" },
+      { trackId: "scroll-track-2", triggerId: "#momento2" },
+      { trackId: "scroll-track-3", triggerId: "#momento3" },
+    ];
 
-    gsap.to(track, {
-      x: -maxTranslate,
-      ease: "power1.inOut",
-      scrollTrigger: {
-        trigger: "#momento1",
-        start: "top 70%",
-        end: "bottom center",
-        scrub: 1,
-        invalidateOnRefresh: true,
-      }
+    config.forEach(({ trackId, triggerId }) => {
+      const track = document.getElementById(trackId);
+      const container = track.parentElement;
+      const maxTranslate = track.scrollWidth - container.clientWidth;
+
+      gsap.to(track, {
+        x: -maxTranslate,
+        ease: "power1.inOut",
+        scrollTrigger: {
+          trigger: triggerId,
+          start: "top 70%",
+          end: "bottom center",
+          scrub: 1,
+          invalidateOnRefresh: true,
+        }
+      });
     });
   });
 </script>
-
 
     <section id="viajes" class="text-center my-20 px-4 fade-in-up">
       <h2 class="text-4xl font-bold text-center mb-12 text-[color:var(--color-heading)]">Elige nuestro viaje soñado</h2>
