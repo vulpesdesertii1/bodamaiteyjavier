@@ -368,7 +368,7 @@
 
         <!-- Carrusel horizontal -->
         <div class="w-full md:w-1/2 relative h-72 sm:h-80 md:h-96 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
-          <div id="scroll-track" class="flex gap-4 h-full will-change-transform touch-pan-x">
+          <div id="scroll-track" class="flex gap-4 h-full will-change-transform touch-pan-x min-w-max">
             <img src="primera cita.jpeg" class="h-full w-auto object-cover flex-shrink-0 rounded-xl shadow-md snap-start" />
             <img src="cita 2.jpeg" class="h-full w-auto object-cover flex-shrink-0 rounded-xl shadow-md snap-start" />
             <img src="cita 3.jpeg" class="h-full w-auto object-cover flex-shrink-0 rounded-xl shadow-md snap-start" />
@@ -393,7 +393,7 @@
 
         <!-- Carrusel horizontal -->
         <div class="w-full md:w-1/2 relative h-72 sm:h-80 md:h-96 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
-          <div id="scroll-track-2" class="flex gap-4 h-full will-change-transform touch-pan-x">
+          <div id="scroll-track-2" class="flex gap-4 h-full will-change-transform touch-pan-x min-w-max">
             <img src="marruecos 1.jpeg" class="h-full w-auto object-cover flex-shrink-0 rounded-xl shadow-md snap-start" />
             <img src="egipto 2.jpeg" class="h-full w-auto object-cover flex-shrink-0 rounded-xl shadow-md snap-start" />
             <img src="mexico.jpeg" class="h-full w-auto object-cover flex-shrink-0 rounded-xl shadow-md snap-start" />
@@ -420,7 +420,7 @@
 
         <!-- Carrusel horizontal -->
         <div class="w-full md:w-1/2 relative h-72 sm:h-80 md:h-96 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
-          <div id="scroll-track-3" class="flex gap-4 h-full will-change-transform touch-pan-x">
+          <div id="scroll-track-3" class="flex gap-4 h-full will-change-transform touch-pan-x min-w-max">
             <img src="beso.jpeg" class="h-full w-auto object-cover flex-shrink-0 rounded-xl shadow-md snap-start" />
             <img src="final 1.jpeg" class="h-full w-auto object-cover flex-shrink-0 rounded-xl shadow-md snap-start" />
             <img src="final 2.jpeg" class="h-full w-auto object-cover flex-shrink-0 rounded-xl shadow-md snap-start" />
@@ -456,21 +456,18 @@
     config.forEach(({ trackId, triggerId }) => {
       const track = document.getElementById(trackId);
       const container = track.parentElement;
-      const maxTranslate = track.scrollWidth - container.clientWidth;
 
-      gsap.to(track, {
-        x: () => -maxTranslate,
-        ease: "power1.inOut",
-        scrollTrigger: {
-          trigger: triggerId,
-          start: "top 95%",
-          end: "bottom top",
-          scrub: 0.1,
-          invalidateOnRefresh: true,
-          onUpdate: self => {
-            container.scrollLeft = -track._gsap.x;
-          }
-        }
+      ScrollTrigger.create({
+        trigger: triggerId,
+        start: "top 95%",
+        end: "bottom top",
+        scrub: 0.2,
+        onUpdate: self => {
+          const progress = self.progress;
+          const maxScroll = track.scrollWidth - container.clientWidth;
+          container.scrollLeft = progress * maxScroll;
+        },
+        invalidateOnRefresh: true,
       });
     });
   });
@@ -486,6 +483,9 @@
   }
   .touch-pan-x {
     touch-action: pan-x;
+  }
+  .min-w-max {
+    min-width: max-content;
   }
 </style>
 
